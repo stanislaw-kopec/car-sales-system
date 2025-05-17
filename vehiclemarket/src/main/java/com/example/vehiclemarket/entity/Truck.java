@@ -1,4 +1,9 @@
 package com.example.vehiclemarket.entity;
 
-public class Truck {
+import jakarta.persistence.Entity;
+
+@Entity
+public class Truck extends Vehicle {
+    private Integer maxLoad;
+    private Integer numberOfAxles;
 }
