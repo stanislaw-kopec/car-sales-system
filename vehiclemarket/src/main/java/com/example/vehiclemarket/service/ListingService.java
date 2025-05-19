@@ -2,17 +2,19 @@ package com.example.vehiclemarket.service;
 
 import com.example.vehiclemarket.entity.Listing;
 import com.example.vehiclemarket.repository.ListingRepository;
-import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
-@AllArgsConstructor
 public class ListingService {
 
     private final ListingRepository listingRepository;
+
+    public ListingService(ListingRepository listingRepository) {
+        this.listingRepository = listingRepository;
+    }
 
     public List<Listing> getAllListings() {
         return listingRepository.findAll();

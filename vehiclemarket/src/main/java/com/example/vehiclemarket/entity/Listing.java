@@ -1,10 +1,7 @@
 package com.example.vehiclemarket.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -24,13 +21,18 @@ public class Listing {
     private BigDecimal price;
     private boolean isActive = true;
 
+    @Setter
+    @Getter
     @ManyToOne
     private User user;
 
+    @Setter
+    @Getter
     @ManyToOne
     @JoinColumn(name = "vehicle_id")
     private Vehicle vehicle;
 
     private LocalDateTime createdAt = LocalDateTime.now();
+
 
 }

@@ -2,6 +2,7 @@ package com.example.vehiclemarket.controller;
 
 import com.example.vehiclemarket.entity.Listing;
 import com.example.vehiclemarket.service.ListingService;
+import com.example.vehiclemarket.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,10 +11,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/listings")
-@RequiredArgsConstructor
 public class ListingController {
 
     private final ListingService listingService;
+
+    ListingController(ListingService listingService) {
+        this.listingService = listingService;
+    }
 
     @GetMapping
     public List<Listing> getAllListing() {

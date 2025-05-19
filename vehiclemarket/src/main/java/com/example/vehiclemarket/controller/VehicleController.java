@@ -4,6 +4,7 @@ import com.example.vehiclemarket.entity.Car;
 import com.example.vehiclemarket.entity.Motorcycle;
 import com.example.vehiclemarket.entity.Truck;
 import com.example.vehiclemarket.entity.Vehicle;
+import com.example.vehiclemarket.service.UserService;
 import com.example.vehiclemarket.service.VehicleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -13,10 +14,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/vehicles")
-@RequiredArgsConstructor
 public class VehicleController {
 
     private final VehicleService vehicleService;
+
+    public VehicleController(VehicleService vehicleService) {
+        this.vehicleService = vehicleService;
+    }
 
     @GetMapping
     public List<Vehicle> getAllVehicle() {
