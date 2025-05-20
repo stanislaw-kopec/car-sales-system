@@ -2,8 +2,6 @@ package com.example.vehiclemarket.controller;
 
 import com.example.vehiclemarket.entity.Listing;
 import com.example.vehiclemarket.service.ListingService;
-import com.example.vehiclemarket.service.UserService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

@@ -6,11 +6,14 @@ import com.example.vehiclemarket.entity.Truck;
 import com.example.vehiclemarket.entity.Vehicle;
 import com.example.vehiclemarket.service.UserService;
 import com.example.vehiclemarket.service.VehicleService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/vehicles")
@@ -34,6 +37,22 @@ public class VehicleController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    @GetMapping("/cars")
+    public List<Car> getAllCars() {
+        return vehicleService.getAllCars();
+    }
+
+    @GetMapping("/motorcycles")
+    public List<Motorcycle> getAllMotorcycles() {
+        return vehicleService.getAllMotorcycles();
+    }
+
+    @GetMapping("/trucks")
+    public List<Truck> getAllTrucks() {
+        return vehicleService.getAllTrucks();
+    }
+
+
     @PostMapping("/car")
     public ResponseEntity<Car> createCar(@RequestBody Car car) {
         return ResponseEntity.ok((Car) vehicleService.saveVehicle(car));
@@ -48,6 +67,42 @@ public class VehicleController {
     public ResponseEntity<Truck> createTruck(@RequestBody Truck truck) {
         return ResponseEntity.ok((Truck) vehicleService.saveVehicle(truck));
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateVehicle(@PathVariable Long id, @RequestBody Map<String, Object> body) {
+        String vehicleType = (String) body.get("vehicleType");
+
+        if (vehicleType == null) {
+            return ResponseEntity.badRequest().body("vehicleType is required.");
+        }
+
+        ObjectMapper mapper = new ObjectMapper();
+        Vehicle updatedVehicle;
+
+        try {
+            switch (vehicleType.toLowerCase()) {
+                case "car":
+                    updatedVehicle = mapper.convertValue(body, Car.class);
+                    break;
+                case "motorcycle":
+                    updatedVehicle = mapper.convertValue(body, Motorcycle.class);
+                    break;
+                case "truck":
+                    updatedVehicle = mapper.convertValue(body, Truck.class);
+                    break;
+                default:
+                    return ResponseEntity.badRequest().body("Unsupported vehicleType: " + vehicleType);
+            }
+
+            Optional<Vehicle> result = vehicleService.updateTypedVehicle(id, updatedVehicle);
+            return result.map(ResponseEntity::ok)
+                    .orElse(ResponseEntity.notFound().build());
+
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body("Invalid request data: " + e.getMessage());
+        }
+    }
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Vehicle> deleteVehicle(@PathVariable Long id) {

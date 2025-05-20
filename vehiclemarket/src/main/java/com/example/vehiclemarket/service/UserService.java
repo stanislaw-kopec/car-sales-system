@@ -33,4 +33,14 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
+    public Optional<User> updateUser(Long id, User updatedUser) {
+        return userRepository.findById(id).map(existingUser -> {
+            existingUser.setEmail(updatedUser.getEmail());
+            existingUser.setPasswordHash(updatedUser.getPasswordHash());
+            existingUser.setName(updatedUser.getName());
+            return userRepository.save(existingUser);
+        });
+    }
+
+
 }
