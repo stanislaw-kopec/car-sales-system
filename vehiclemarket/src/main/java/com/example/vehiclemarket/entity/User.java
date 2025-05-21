@@ -1,5 +1,6 @@
 package com.example.vehiclemarket.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,5 +27,6 @@ public class User {
     private String name;
 
     @OneToMany(mappedBy = "user")
+    @JsonManagedReference
     private List<Listing> listings = new ArrayList<>();
 }

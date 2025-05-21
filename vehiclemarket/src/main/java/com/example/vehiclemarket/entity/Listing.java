@@ -1,5 +1,6 @@
 package com.example.vehiclemarket.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -24,6 +25,7 @@ public class Listing {
     @Setter
     @Getter
     @ManyToOne
+    @JsonBackReference
     private User user;
 
     @Setter
@@ -35,4 +37,15 @@ public class Listing {
     private LocalDateTime createdAt = LocalDateTime.now();
 
 
+    public Object getIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(Object isActive) {
+        if (isActive instanceof Boolean) {
+            this.isActive = (Boolean) isActive;
+        } else {
+            throw new IllegalArgumentException("Invalid type for isActive");
+        }
+    }
 }

@@ -39,4 +39,14 @@ public class ListingService {
         listingRepository.deleteById(id);
     }
 
+    public Optional<Listing> updateListing(Long id, Listing updatedListing) {
+        return listingRepository.findById(id).map(existingListing -> {
+            existingListing.setTitle(updatedListing.getTitle());
+            existingListing.setDescription(updatedListing.getDescription());
+            existingListing.setPrice(updatedListing.getPrice());
+            existingListing.setIsActive(updatedListing.getIsActive());
+            return listingRepository.save(existingListing);
+        });
+    }
+
 }

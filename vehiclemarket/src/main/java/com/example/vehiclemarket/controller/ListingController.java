@@ -44,6 +44,13 @@ public class ListingController {
         }
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<Listing> updateListing(@PathVariable Long id, @RequestBody Listing updatedListing) {
+        return listingService.updateListing(id, updatedListing)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteListing(@PathVariable Long id) {
         listingService.deleteListing(id);
