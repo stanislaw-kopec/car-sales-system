@@ -78,6 +78,18 @@ public class VehicleService {
         });
     }
 
+    public List<Car> getCarsByFuelType(String fuelType) {
+        return carRepository.findByFuelType(fuelType);
+    }
+
+    public List<Motorcycle> getMotorcyclesByFuelType(String fuelType) {
+        return motorcycleRepository.findByFuelType(fuelType);
+    }
+
+    public List<Truck> getTrucksByFuelType(String fuelType) {
+        return truckRepository.findByFuelType(fuelType);
+    }
+
     public List<Car> getAllCars() {
         return carRepository.findAll();
     }

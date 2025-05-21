@@ -38,17 +38,26 @@ public class VehicleController {
     }
 
     @GetMapping("/cars")
-    public List<Car> getAllCars() {
+    public List<Car> getCars(@RequestParam(required = false) String fuelType) {
+        if (fuelType != null) {
+            return vehicleService.getCarsByFuelType(fuelType);
+        }
         return vehicleService.getAllCars();
     }
 
     @GetMapping("/motorcycles")
-    public List<Motorcycle> getAllMotorcycles() {
+    public List<Motorcycle> getMotorcycles(@RequestParam(required = false) String fuelType) {
+        if (fuelType != null) {
+            return vehicleService.getMotorcyclesByFuelType(fuelType);
+        }
         return vehicleService.getAllMotorcycles();
     }
 
     @GetMapping("/trucks")
-    public List<Truck> getAllTrucks() {
+    public List<Truck> getTrucks(@RequestParam(required = false) String fuelType) {
+        if (fuelType != null) {
+            return vehicleService.getTrucksByFuelType(fuelType);
+        }
         return vehicleService.getAllTrucks();
     }
 
