@@ -1,5 +1,6 @@
 package com.example.vehiclemarket.service;
 
+import com.example.vehiclemarket.Model.FuelType;
 import com.example.vehiclemarket.entity.Car;
 import com.example.vehiclemarket.entity.Motorcycle;
 import com.example.vehiclemarket.entity.Truck;
@@ -78,15 +79,15 @@ public class VehicleService {
         });
     }
 
-    public List<Car> getCarsByFuelType(String fuelType) {
+    public List<Car> getCarsByFuelType(FuelType fuelType) {
         return carRepository.findByFuelType(fuelType);
     }
 
-    public List<Motorcycle> getMotorcyclesByFuelType(String fuelType) {
+    public List<Motorcycle> getMotorcyclesByFuelType(FuelType fuelType) {
         return motorcycleRepository.findByFuelType(fuelType);
     }
 
-    public List<Truck> getTrucksByFuelType(String fuelType) {
+    public List<Truck> getTrucksByFuelType(FuelType fuelType) {
         return truckRepository.findByFuelType(fuelType);
     }
 

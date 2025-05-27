@@ -1,5 +1,6 @@
 package com.example.vehiclemarket.controller;
 
+import com.example.vehiclemarket.Model.FuelType;
 import com.example.vehiclemarket.entity.Car;
 import com.example.vehiclemarket.entity.Motorcycle;
 import com.example.vehiclemarket.entity.Truck;
@@ -38,7 +39,7 @@ public class VehicleController {
     }
 
     @GetMapping("/cars")
-    public List<Car> getCars(@RequestParam(required = false) String fuelType) {
+    public List<Car> getCars(@RequestParam(required = false) FuelType fuelType) {
         if (fuelType != null) {
             return vehicleService.getCarsByFuelType(fuelType);
         }
@@ -46,7 +47,7 @@ public class VehicleController {
     }
 
     @GetMapping("/motorcycles")
-    public List<Motorcycle> getMotorcycles(@RequestParam(required = false) String fuelType) {
+    public List<Motorcycle> getMotorcycles(@RequestParam(required = false) FuelType fuelType) {
         if (fuelType != null) {
             return vehicleService.getMotorcyclesByFuelType(fuelType);
         }
@@ -54,7 +55,7 @@ public class VehicleController {
     }
 
     @GetMapping("/trucks")
-    public List<Truck> getTrucks(@RequestParam(required = false) String fuelType) {
+    public List<Truck> getTrucks(@RequestParam(required = false) FuelType fuelType) {
         if (fuelType != null) {
             return vehicleService.getTrucksByFuelType(fuelType);
         }
