@@ -1,6 +1,9 @@
 package com.example.vehiclemarket.entity;
 
+import com.example.vehiclemarket.Model.MotoType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,6 +11,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Motorcycle extends Vehicle {
-    private String motoType;
+    @Enumerated(EnumType.STRING)
+    private MotoType motoType;
     private Integer engineCapacity;
 }

@@ -18,22 +18,21 @@ public class Listing {
     private Long id;
 
     private String title;
+    @Column(columnDefinition = "TEXT")
     private String description;
+    @Column(precision = 10, scale = 2)
     private BigDecimal price;
     private boolean isActive = true;
 
-    @Setter
-    @Getter
     @ManyToOne
     @JsonBackReference
     private User user;
 
-    @Setter
-    @Getter
     @ManyToOne
     @JoinColumn(name = "vehicle_id")
     private Vehicle vehicle;
 
+    @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
 
 
