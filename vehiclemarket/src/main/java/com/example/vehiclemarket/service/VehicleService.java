@@ -9,7 +9,6 @@ import com.example.vehiclemarket.repository.CarRepository;
 import com.example.vehiclemarket.repository.MotorcycleRepository;
 import com.example.vehiclemarket.repository.TruckRepository;
 import com.example.vehiclemarket.repository.VehicleRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -45,7 +45,7 @@ public class Listing {
     private LocalDateTime createdAt = LocalDateTime.now();
 
 
-    public Object getIsActive() {
+    public boolean getIsActive() {
         return isActive;
     }
 
