@@ -1,3 +1,20 @@
+# Uruchomienie aplikacji:
+
+1. Zbuduj i uruchom kontenery:
+   ```bash
+   docker-compose up --build
+
+2. Otwórz w przeglądarce:
+    http://localhost:8080/swagger-ui/index.html#/
+
+---
+
+# Diagram ERD bazy danych:
+
+![Schemat](images/erd.png)
+
+---
+
 # 📦 Wzorce projektowe zastosowane w projekcie *Vehicle Market*
 
 Projekt wykorzystuje szereg klasycznych wzorców projektowych i architektonicznych, które wspierają dobre praktyki w programowaniu obiektowym oraz z użyciem Spring Boot. Poniżej opis zastosowanych wzorców:
